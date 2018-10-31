@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List</h2>
+
+
+<ol>
+    @foreach (var item in ViewBag.Products)
+    {
+        <li>
+            @item.Name
+        </li>
+    }
+</ol>
+
