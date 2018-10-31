@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -61,9 +61,9 @@ namespace WebApplication1.Controllers
             return View();
         }
 
-        public ActionResult ProductId()
+        public ActionResult ProductId(int id)
         {
-            ViewBag.Product = productList[0];
+            ViewBag.Product = productList[id];
             return View();
         }
     }
