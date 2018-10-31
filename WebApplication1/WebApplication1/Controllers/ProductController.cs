@@ -63,7 +63,13 @@ namespace WebApplication1.Controllers
 
         public ActionResult ProductId(int id)
         {
-            ViewBag.Product = productList[id];
+            var product = productList.Find((p) => p.Id == id);
+            if (product == null)
+            {
+                return HttpNotFound();
+            }
+
+            ViewBag.Product = product;
             return View();
         }
     }

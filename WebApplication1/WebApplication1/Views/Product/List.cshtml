@@ -10,7 +10,7 @@
     @foreach (var item in ViewBag.Products)
     {
         <li>
-            @item.Name
+            @item.Name @Html.ActionLink("Product", "ProductId", new { id = item.Id  })
         </li>
     }
 </ol>
