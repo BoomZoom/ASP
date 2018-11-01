@@ -47,6 +47,8 @@ namespace WebApplication1.Controllers
                     Price = 12.99M
                 },
             };
+        static private LibraryContext db = new LibraryContext();
+        
         // GET: Product
         public ActionResult Index()
         {
@@ -55,15 +57,16 @@ namespace WebApplication1.Controllers
 
         public ActionResult List()
         {
-           
 
-            ViewBag.Products = productList;
+
+            ViewBag.Products = db.Products.ToList();//productList;
             return View();
         }
 
         public ActionResult ProductId(int id)
         {
-            var product = productList.Find((p) => p.Id == id);
+
+            var product = db.Products.ToList().Find((p) => p.Id == id);
             if (product == null)
             {
                 return HttpNotFound();

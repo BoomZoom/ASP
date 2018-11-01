@@ -8,11 +8,11 @@ namespace WebApplication1.Models
 {
     public class LibraryContext : DbContext
     {
-        public LibraryContext():base("AspNetDB")
-        {
-            Database.SetInitializer<LibraryContext>
-                (new CreateDatabaseIfNotExists<LibraryContext>());
-        }
+        //public LibraryContext():base("AspNetDB")
+        //{
+        //    Database.SetInitializer<LibraryContext>
+        //        (new CreateDatabaseIfNotExists<LibraryContext>());
+        //}
 
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categoryes { get; set; }
