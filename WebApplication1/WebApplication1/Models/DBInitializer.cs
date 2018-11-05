@@ -6,7 +6,7 @@ using System.Web;
 
 namespace WebApplication1.Models
 {
-    public class DBInitializer:DropCreateDatabaseAlways<LibraryContext>
+    public class DBInitializer:CreateDatabaseIfNotExists<LibraryContext>
     {
         protected override void Seed(LibraryContext context)
         {

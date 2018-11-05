@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication1.Models;
+using System.Diagnostics;
 
 namespace WebApplication1.Controllers
 {
@@ -57,11 +58,42 @@ namespace WebApplication1.Controllers
 
         public ActionResult List()
         {
-
-
             ViewBag.Products = db.Products.ToList();//productList;
             return View();
         }
+
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            //IEnumerable<SelectListItem>
+                var a= db.Categoryes.ToDictionary((p)=>p.Id);
+
+
+            ViewBag.Categoryes = db.Categoryes.ToList()
+                .Select(x=>new SelectListItem() { Text=x.Name });
+            ViewBag.ProductId = id;
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Edit(/*Product product*/)
+        {
+            //var a = db.Products.Find(product);
+            //if (a!=null)
+            //{
+            //    a = product;
+            //}
+
+            //TODO change item database
+            // db.Products.Add(product);
+            // Debug.WriteLine(product.Category.Name+" "+ product.Category.Name);
+            // db.SaveChanges();
+            Debug.WriteLine(Request.Form["Categoryes"]);
+
+            ViewBag.Products = db.Products.ToList();
+            return View();
+        }
+
+
 
         public ActionResult ProductId(int id)
         {
@@ -71,7 +103,6 @@ namespace WebApplication1.Controllers
             {
                 return HttpNotFound();
             }
-
             ViewBag.Product = product;
             return View();
         }
