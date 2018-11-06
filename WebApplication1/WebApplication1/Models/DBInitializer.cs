@@ -10,7 +10,6 @@ namespace WebApplication1.Models
     {
         protected override void Seed(LibraryContext context)
         {
-
             List<Category> categories = new List<Category>()
             {
                 new Category (){Name="first"},

@@ -67,16 +67,30 @@ namespace WebApplication1.Controllers
         {
             //IEnumerable<SelectListItem>
                 var a= db.Categoryes.ToDictionary((p)=>p.Id);
+            //var categories = db.Categoryes
+            //    .Select(x => new SelectListItem() { Text = x.Name, Value = x.Id.ToString() });
 
+            var cat = db.Categoryes.ToList();
+            var list = new List<SelectListItem>();
+            foreach (var c in cat)
+            {
+                list.Add(new SelectListItem() { Text = c.Name, Value = c.Id.ToString() });
+            }
+            
 
-            ViewBag.Categoryes = db.Categoryes.ToList()
-                .Select(x=>new SelectListItem() { Text=x.Name });
+            ViewBag.Categoryes = list;
             ViewBag.ProductId = id;
             return View();
         }
         [HttpPost]
-        public ActionResult Edit(/*Product product*/)
+        public ActionResult Edit(Product product)
         {
+            var p = new Product();
+            p.CategoryId = product.CategoryId;
+            p.Price = Convert.ToDecimal(product.Price);
+            //p.Id = product.Id;
+            p.Name = product.Name;
+
             //var a = db.Products.Find(product);
             //if (a!=null)
             //{
@@ -84,13 +98,23 @@ namespace WebApplication1.Controllers
             //}
 
             //TODO change item database
-            // db.Products.Add(product);
+             db.Products.Add(p);
             // Debug.WriteLine(product.Category.Name+" "+ product.Category.Name);
-            // db.SaveChanges();
-            Debug.WriteLine(Request.Form["Categoryes"]);
+            db.SaveChanges();
+            //Debug.WriteLine(Request.Form["Categoryes"]);
+
+            var cat = db.Categoryes.ToList();
+            var list = new List<SelectListItem>();
+            foreach (var c in cat)
+            {
+                list.Add(new SelectListItem() { Text = c.Name, Value = c.Id.ToString() });
+            }
+
+
+            ViewBag.Categoryes = list;
 
             ViewBag.Products = db.Products.ToList();
-            return View();
+            return View(product);
         }
 
 
@@ -103,8 +127,8 @@ namespace WebApplication1.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.Product = product;
-            return View();
+            //ViewBag.Product = product;
+            return View(product);
         }
     }
 }

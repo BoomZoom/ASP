@@ -212,6 +212,7 @@
     <Content Include="Views\Product\List.cshtml" />
     <Content Include="Views\Product\ProductId.cshtml" />
     <Content Include="Views\Home\Detail.cshtml" />
+    <Content Include="Views\Product\Edit1.cshtml" />
     <Content Include="Views\Product\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
